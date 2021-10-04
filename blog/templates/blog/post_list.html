@@ -1,0 +1,18 @@
+<html>
+    <head>
+        <title>Blog</title>
+    </head>
+    <body>
+        <div>
+            <h1><a href="https://www.youtube.com/channel/UC-WNdguIr3cEnIHfBjzzwfg">Blogs</a></h1>
+        </div>
+
+        {% for post in posts %}
+            <div>
+                <p>published: {{ published_date }}</p>
+                <h1>{{post.title}}</h1>
+                <p>{{ post.text|linebreaksbr }}</p>
+            </div>
+        {% endfor %}
+    </body>
+</html>
