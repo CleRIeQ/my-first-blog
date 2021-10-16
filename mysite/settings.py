@@ -31,13 +31,13 @@ ALLOWED_HOSTS = ['127.0.0.1', 'https://clerleq.pythonanywhere.com/']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'django.contrib.admin',
 ]
 
 MIDDLEWARE = [
@@ -120,6 +120,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = '/home/CleRleQ/clerleq.pythonanywhere.com/static'
+LOGIN_REDIRECT_URL = '/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
