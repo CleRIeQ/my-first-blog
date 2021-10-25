@@ -10,8 +10,9 @@
     text-decoration: none;
 }
 
-.content {
+.content div div {
     margin-left: 40px;
+    background-color: #d1d1d1;
 }
 
 h1, h2, h3, h4 {
@@ -46,30 +47,6 @@ h1, h2, h3, h4 {
     color: #000000;
 }
 
-.btn-group button {
-    background-color: #FFFFFF; /* Green background */
-    border: 2px solid #fe5e00a8; /* Green border */
-    color: #828282; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    float: left; /* Float the buttons side by side */
-}
-
-.btn-group button:not(:last-child) {
-    border-right: none; /* Prevent double borders */
-}
-
-/* Clear floats (clearfix hack) */
-.btn-group:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-/* Add a background color on hover */
-.btn-group button:hover {
-    background-color: #303d40;
-}
 
 .underhead, .underhead a {
     padding: 0px;
@@ -90,4 +67,10 @@ h1, h2, h3, h4 {
     font-size: 36pt;
     padding-top: 25px;
     float: right;
+}
+
+.comment-author {
+    font-size: 20pt;
+    color: #000000;
+    margin-top: 30px;
 }

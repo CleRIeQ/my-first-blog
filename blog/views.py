@@ -1,5 +1,6 @@
 from django.contrib.auth.forms import UserCreationForm
 from .models import Post
+from .models import Comment
 from django.contrib.auth.decorators import login_required
 from django.urls import reverse_lazy
 from django.shortcuts import render, get_object_or_404
@@ -9,7 +10,7 @@ from .models import *
 from django.views.generic import ListView, DetailView, CreateView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import redirect
-from .forms import RegistrationForm
+from .forms import RegistrationForm, CommentForm
 
 
 def post_list(request):
@@ -19,7 +20,18 @@ def post_list(request):
 
 def post_detail(request, pk):
     post = get_object_or_404(Post, pk=pk)
-    return render(request, 'blog/post_detail.html', {'post': post})
+    latest_comments_list = Comment.objects.filter(post=pk)
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            form = form.save(commit=False)
+            form.author = request.user
+            form.post = post
+            form.save()
+    else:
+        form = CommentForm()
+    return render(request, 'blog/post_detail.html', {'post': post, 'latest_comments_list': latest_comments_list,
+                                                     'form': form})
 
 
 def post_new(request):
@@ -65,3 +77,8 @@ def register(request):
     else:
         user_form = RegistrationForm()
     return render(request, 'registration/register.html', {'user_form': user_form})
+
+
+def leave_comment(request, post_id):
+    p_id = Post.objects.get(id=post_id)
+    p_id.comment_set.create(author_name=request.user, comment_text = request.post['TEXT'])

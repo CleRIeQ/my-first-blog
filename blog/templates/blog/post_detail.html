@@ -12,5 +12,24 @@
         {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
+
+        <p>Комментарии</p>
+        {% if user.is_authenticated %}
+            <form action="" method="POST" class="post-form">{% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="save btn btn-default">Оставить комментарий</button>
+            </form>
+        {% endif %}
+         {% for comment in latest_comments_list %}
+            <h2 class="comment-author">
+                {{ comment.author }}<br>
+            </h2>
+            {{ comment.body }}<br>
+            <div class="date">
+                {{ comment.created }}
+            </div>
+        {% endfor %}
     </div>
+
 {% endblock %}
+

@@ -122,6 +122,14 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/home/CleRleQ/clerleq.pythonanywhere.com/static'
 LOGIN_REDIRECT_URL = '/'
 
+EMAIL_HOST = 'xxdiktorxx@gmail.com'
+EMAIL_HOST_USER = 'zakharsd@gmail.com'
+EMAIL_HOST_PASSWORD = 'ZSA21245sd'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 # first
