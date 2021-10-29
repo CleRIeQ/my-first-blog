@@ -1,7 +1,8 @@
 from django.conf import settings
 from django.db import models
 from django.utils import timezone
-
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes.fields import GenericForeignKey, GenericRelation
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
@@ -10,6 +11,8 @@ class Post(models.Model):
     textinfo = models.CharField(max_length=450, default='О чем ваш текст?')
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
+    likes = models.IntegerField(verbose_name='Нравится', default=0)
+    dislikes = models.IntegerField(verbose_name='Не нравится', default=0)
 
     def publish(self):
         self.published_date = timezone.now()
@@ -32,3 +35,4 @@ class Comment(models.Model):
 
     def __str__(self):
         return 'Написал {} к {}'.format(self.author, self.post)
+

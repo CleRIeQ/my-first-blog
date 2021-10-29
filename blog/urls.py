@@ -8,5 +8,7 @@ urlpatterns = [
     path('post/new/', views.post_new, name='post_new'),
     path('post/<int:pk>/edit/', views.post_edit, name='post_edit'),
     path('register/', views.register, name='register'),
-    path('post/<int:pk>/leave_comment/', views.post_detail, name='leave_comment')
+    path('post/<int:pk>/leave_comment/', views.post_detail, name='leave_comment'),
+    url(r'^(?P<slug>S+)/addlike/$', views.add_like, name='add_like'),
+    url(r'^(?P<slug>S+)/adddislike/$', views.add_dislike, name='add_dislike'),
 ]

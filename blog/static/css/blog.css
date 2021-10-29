@@ -1,18 +1,23 @@
+body {
+    background-image: url(../images/wall.jpg);
+}
+
 .page-header {
-    background-color: #303B44;
+    background-image: url(../images/orange.jpg);
     margin-top: 0;
     padding: 20px 20px 20px 40px
 }
 
 .page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
-    color: #FFFFFF;
-    font-size: 36pt;
+    color: #000000;
+    float: left;
+    font-size: 29pt;
+    margin-left: 170px;
     text-decoration: none;
 }
 
 .content div div {
     margin-left: 40px;
-    background-color: #d1d1d1;
 }
 
 h1, h2, h3, h4 {
@@ -32,10 +37,12 @@ h1, h2, h3, h4 {
 }
 
 .top-menu, .top-menu:hover, .top-menu:visited {
-    color: #ffffff;
+    color: #000000;
     float: right;
-    font-size: 26pt;
+    font-size: 40pt;
+    font-weight:bold;
     margin-right: 20px;
+    margin-bottom: 20px;
     text-decoration: none;
 }
 
@@ -47,13 +54,29 @@ h1, h2, h3, h4 {
     color: #000000;
 }
 
+.star {
+    color: #ffcb0f;
+}
 
-.underhead, .underhead a {
-    padding: 0px;
-    background-color: #ffffff;
-    margin: 10px;
-    margin-right: 5px;
-    color: #828282;
+.underhead a {
+   font-size: 17px;
+   color: #000000;
+   font-weight:bold;
+   margin-left: 50px;
+   padding: 0px;
+   text-decoration: none;
+}
+
+.underhead-margin {
+    margin-left: 330px;
+}
+
+.underhead {
+    padding: 12px;
+    background-image: url(../images/orange.jpg);
+    margin-bottom: 10px;
+    border-top: 1px solid #DA1D00;
+    border-bottom: 1px solid #DA1D00;
     text-decoration: none;
 }
 
@@ -73,4 +96,24 @@ h1, h2, h3, h4 {
     font-size: 20pt;
     color: #000000;
     margin-top: 30px;
+}
+
+.dislikes {
+    font-size: 40pt;
+    font-size: 36pt;
+    float: right;
+    color: red;
+    text-decoration: none;
+}
+
+.likes {
+    font-size: 40pt;
+    font-size: 36pt;
+    float: right;
+    color: green;
+    text-decoration: none;
+}
+
+.blog-image {
+    margin-left: 25px;
 }

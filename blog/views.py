@@ -82,3 +82,22 @@ def register(request):
 def leave_comment(request, post_id):
     p_id = Post.objects.get(id=post_id)
     p_id.comment_set.create(author_name=request.user, comment_text = request.post['TEXT'])
+
+
+def add_like(request, slug):
+    try:
+        post = get_object_or_404(Post, slug=slug)
+        post.likes += 1
+    except ObjectDoesNotExist:
+        return http404
+    return redirect(request.GET.get('next', '/'))
+
+
+def add_dislike(request, slug):
+    try:
+        post = get_object_or_404(Post, slug=slug)
+        post.dislikes += 1
+        post.save()
+    except ObjectDoesNotExist:
+        return Http404
+    return redirect(request.GET.get('next', '/'))

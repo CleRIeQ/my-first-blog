@@ -12,7 +12,18 @@
         {% endif %}
         <h1>{{ post.title }}</h1>
         <p>{{ post.text|linebreaksbr }}</p>
-
+            {% if user.is_authenticated %}
+                <table width="100%">
+                    <tr>
+                        <td width="50%">
+                            <a href='{{ object.get_absolute_url }}addlike/?next={{ object.get_absolute_url|urlencode:"" }}'><i
+                            style="color:#449d44" class="likes"></i>♡</a> <span> {{ object.likes }} </span>
+                             &nbsp;&nbsp;&nbsp;
+                            <a href='{{ object.get_absolute_url }}adddislike/?next={{ object.get_absolute_url|urlencode:"" }}'><i
+                            style="color:#942a25" class="dislikes"></i>♡</a> <span> {{ object.dislikes }} </span></td>
+                    </tr>
+                </table>
+            {% endif %}
         <p>Комментарии</p>
         {% if user.is_authenticated %}
             <form action="" method="POST" class="post-form">{% csrf_token %}
@@ -20,7 +31,7 @@
                 <button type="submit" class="save btn btn-default">Оставить комментарий</button>
             </form>
         {% endif %}
-         {% for comment in latest_comments_list %}
+        {% for comment in latest_comments_list %}
             <h2 class="comment-author">
                 {{ comment.author }}<br>
             </h2>
