@@ -11,19 +11,17 @@
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Изменить<span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}
         <h1>{{ post.title }}</h1>
+        <p class="tags">Tags: {{ post.tags.all|join:", " }}
+        </p>
         <p>{{ post.text|linebreaksbr }}</p>
-            {% if user.is_authenticated %}
-                <table width="100%">
-                    <tr>
-                        <td width="50%">
-                            <a href='{{ object.get_absolute_url }}addlike/?next={{ object.get_absolute_url|urlencode:"" }}'><i
-                            style="color:#449d44" class="likes"></i>♡</a> <span> {{ object.likes }} </span>
-                             &nbsp;&nbsp;&nbsp;
-                            <a href='{{ object.get_absolute_url }}adddislike/?next={{ object.get_absolute_url|urlencode:"" }}'><i
-                            style="color:#942a25" class="dislikes"></i>♡</a> <span> {{ object.dislikes }} </span></td>
-                    </tr>
-                </table>
-            {% endif %}
+            <br/><br/>
+        <hr>
+        <br/>
+        <form action="{% url 'like_post' post.pk %}"
+              method="POST">
+            {% csrf_token %}
+            <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button> -  {{ total_likes }} Likes
+        </form>
         <p>Комментарии</p>
         {% if user.is_authenticated %}
             <form action="" method="POST" class="post-form">{% csrf_token %}
@@ -43,4 +41,3 @@
     </div>
 
 {% endblock %}
-

@@ -3,11 +3,10 @@
 {% block title %}Создание аккаунта{% endblock %}
 
 {% block content %}
-    <h1>Создание аккаунта</h1>
-    <p>Заполните все поля:</p>
-    <form action="." method="post">
+    <h1 class="reg-info">Создание аккаунта</h1>
+    <form action="." method="post" class="register">
         {{ user_form.as_p }}
         {% csrf_token %}
-        <p><input type="submit" value="Create my account"></p>
+        <button class="btn btn-primary reg-button" type="submit">Создать</button>
     </form>
 {% endblock %}

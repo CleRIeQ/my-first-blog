@@ -1,20 +1,32 @@
 from django import forms
-from .models import Post
+from django.forms.widgets import TextInput
+from .models import Category, Post
 from .models import Comment
 from django.contrib.auth.models import User
 
+choices = Category.objects.all().values_list('name','name')
+
+choice_list = []
+
+for item in choices:
+    choice_list.append(item)
 
 class PostForm(forms.ModelForm):
-    textinfo = forms.CharField(label='О чем ваша статья? (коротко)', widget=forms.Textarea, max_length=400)
+    textinfo = forms.CharField(label='Описание', widget=forms.TextInput, max_length=250)
+    text = forms.CharField(label='Текст статьи', widget=forms.TextInput, max_length=10000)
+    title = forms.CharField(label='Название', widget=forms.TextInput, max_length=200)
+    category = forms.ChoiceField(choices=choices, label='Категории')
 
     class Meta:
         model = Post
-        fields = ('title', 'text', 'textinfo',)
+        fields = ('title', 'text', 'textinfo', 'category')
 
 
 class RegistrationForm(forms.ModelForm):
-    password = forms.CharField(label='Password', widget=forms.PasswordInput)
-    password2 = forms.CharField(label='Repeat password', widget=forms.PasswordInput)
+    username = forms.CharField(label='Логин', widget=forms.TextInput)
+    password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
+    password2 = forms.CharField(label='Повтор', widget=forms.PasswordInput)
+    email = forms.CharField(label='email', widget=forms.TextInput)
 
     class Meta:
         model = User
@@ -31,3 +43,12 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comment
         fields = ('body',)
+
+
+class LoginUserForm(forms.ModelForm):
+    password = forms.CharField(widget=forms.PasswordInput)
+    username= forms.CharField(label='Логин', widget=TextInput)
+
+    class Meta:
+        model = User
+        fields = {'username', 'password'}

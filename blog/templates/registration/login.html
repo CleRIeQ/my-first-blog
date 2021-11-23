@@ -10,31 +10,29 @@
   {% if user.is_authenticated %}
     <p>Your account doesn't have access to this page. To proceed,
     please login with an account that has access.</p>
-  {% else %}
-    <p>Please login to see this page.</p>
   {% endif %}
 {% endif %}
-
-<form method="post" action="{% url 'login' %}">
+<h1 class="login-info">Авторизация</h1>
+<form method="post" action="{% url 'login' %}" class="login">
 {% csrf_token %}
-<table>
-
-<tr>
-  <td>{{ form.username.label_tag }}</td>
-  <td>{{ form.username }}</td>
-</tr>
-
-<tr>
-  <td>{{ form.password.label_tag }}</td>
-  <td>{{ form.password }}</td>
-</tr>
+<table class> 
+  <p>
+    <label for="login">Логин:</label>
+    <span type="text" name="login" id="login">{{ form.username }}</span>
+ 
+  </p>
+  
+  <p>
+    <label for="password">Пароль:</label>
+    <span type="password" name="password" id="password" >{{ form.password }}</span>
+  </p>
 </table>
-
-<input type="submit" value="Войти" />
+<p>
+<button type="submit" class="login-button">Войти</button>
+</p>
 <input type="hidden" name="next" value="{{ next }}" />
+<p><a href="{% url 'password_reset' %}" class="forgot-password">Забыли пароль?</a></p>
 </form>
 
-{# Assumes you setup the password_reset view in your URLconf #}
-<p><a href="{% url 'password_reset' %}" class="underhead a">Забыли пароль?</a></p>
 
 {% endblock %}

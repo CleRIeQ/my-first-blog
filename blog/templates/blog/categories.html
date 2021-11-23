@@ -1,0 +1,22 @@
+{% extends 'blog/base.html' %}
+{% block bg %}
+<body class="post-list">
+{% endblock %}
+{% block content %}
+{% if category_posts %}
+<p>Post with category {{ cats }} </p>
+    {% for post in category_posts %}
+        <div class="post">
+            <div class="date">
+                <p>{{ post.author }} {{ post.published_date }}  </p>
+            </div>
+            <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
+            <p>{{ post.textinfo|linebreaksbr }}</p>
+        </div>
+    {% endfor %}
+    {% include 'blog/pagination.html' with cats=category_posts %}
+    {% else %}
+    <p> Такой категории не существует...</p>
+    {% endif %}
+{% endblock %}
+</body>

@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
-import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'taggit',
     'django.contrib.admin',
 ]
 
@@ -122,13 +122,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/home/CleRleQ/clerleq.pythonanywhere.com/static'
 LOGIN_REDIRECT_URL = '/'
 
-EMAIL_HOST = 'xxdiktorxx@gmail.com'
-EMAIL_HOST_USER = 'zakharsd@gmail.com'
-EMAIL_HOST_PASSWORD = 'ZSA21245sd'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+TAGGIT_CASE_INSENSITIVE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
