@@ -1,5 +1,9 @@
-{% extends "blog/base.html" %}
+{% extends "blog/form_cust.html" %}
+{% load static %}
 
+<head>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
 {% block content %}
 
 {% if form.errors %}

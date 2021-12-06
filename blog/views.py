@@ -1,3 +1,4 @@
+
 from django.contrib.auth import login, authenticate
 from django.forms.forms import Form 
 from django.http import HttpResponseRedirect
@@ -37,6 +38,16 @@ def post_list(request, tag_slug=None):
         # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/post_list.html', {'posts': posts, 'page': page, 'tag': tag})
+
+
+def profile(request):
+    if request.user.is_authenticated:
+        user_posts = Post.objects.filter(author=request.user)
+        liked_posts = Post.objects.filter(likes=request.user)
+        return render(request, 'user_files/profile.html', {'user_posts': user_posts, 'liked_posts': liked_posts})
+    else:
+        return redirect('login')
+    
 
 
 def hello(request):
@@ -134,17 +145,14 @@ def LikeView(request, pk):
     return HttpResponseRedirect(reverse('post_detail', args=[str(pk)]))
 
 
-def main_menu(request):
-    post_categoryes = choice_list
-    return render(request, 'blog/main_menu.html', {'post_categoryes': post_categoryes})
-
-
 def login_user(request):
     if request.method == 'POST':
         login_form = LoginUserForm(request.POST)
         if login_form.is_valid():
             cd = login_form.cleaned_data
             user = authenticate(username=cd['username'], password=cd['password'])
+            if user:
+                return HttpResponseRedirect("?next=/main_menu/")
             if user is not None:
                 if user.is_active:
                     login(request, user)
@@ -160,4 +168,34 @@ def login_user(request):
 
 def category_view(request, cats):
     category_posts = Post.objects.filter(category=cats)
-    return render(request, 'blog/categories.html', {'cats': cats.title(), 'category_posts': category_posts})
+    paginator = Paginator(category_posts, 4)  # 3 posts in each page
+    page = request.GET.get('page')
+    try:
+        category_posts = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer deliver the first page
+        category_posts = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range deliver last page of results
+        category_posts = paginator.page(paginator.num_pages)
+    return render(request, 'blog/categories.html', {'cats': cats.title(), 'category_posts': category_posts, 'page': page})
+
+
+def main_menu(request):
+    pubg = Post.objects.filter(id=1) #Pubg
+    minecraft = Post.objects.filter(id=2) #minecraft
+    dota = Post.objects.filter(id=6) #dota
+    wot = Post.objects.filter(id=5) #wot
+    gta = Post.objects.filter(id=11) #gta
+    csgo = Post.objects.filter(id=7) #csgo
+    
+    post_categoryes = choice_list
+    return render(request, 'blog/main_menu.html', {
+        'post_categoryes': post_categoryes, 
+        'pubg': pubg, 
+        'minecraft': minecraft, 
+        'wot': wot, 
+        'dota': dota,
+        'csgo': csgo,
+        'gta': gta })
+

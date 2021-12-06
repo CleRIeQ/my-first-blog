@@ -1,4 +1,4 @@
-{% extends 'blog/base.html' %}
+{% extends 'blog/form_cust.html' %}
 {% load static %}
 <html>
     <head>
@@ -6,8 +6,8 @@
 
     <body>
         {% block content %}
-            <div class="logged">
-                <p>Вы успешно вышли с аккаунта!</p>
+            <div>
+                <p class="login-info" style="font-size: 50;">Вы успешно вышли с аккаунта!</p>
             </div>
         {% endblock %}
 

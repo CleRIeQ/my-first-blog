@@ -14,7 +14,7 @@
             <p>{{ post.textinfo|linebreaksbr }}</p>
         </div>
     {% endfor %}
-    {% include 'blog/pagination.html' with cats=category_posts %}
+    {% include 'blog/pagination.html' with page=category_posts %}
     {% else %}
     <p> Такой категории не существует...</p>
     {% endif %}

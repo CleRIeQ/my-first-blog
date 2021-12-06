@@ -12,9 +12,9 @@ for item in choices:
     choice_list.append(item)
 
 class PostForm(forms.ModelForm):
-    textinfo = forms.CharField(label='Описание', widget=forms.TextInput, max_length=250)
-    text = forms.CharField(label='Текст статьи', widget=forms.TextInput, max_length=10000)
-    title = forms.CharField(label='Название', widget=forms.TextInput, max_length=200)
+    textinfo = forms.CharField(label='Описание', widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=250)
+    text = forms.CharField(label='Текст', widget=forms.Textarea(), max_length=10000)
+    title = forms.CharField(label='Название', widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=200)
     category = forms.ChoiceField(choices=choices, label='Категории')
 
     class Meta:

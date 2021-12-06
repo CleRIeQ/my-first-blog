@@ -1,54 +1,39 @@
+{% extends 'blog/base.html' %}
 {% load static %}
-<html>
-    <head>
-        <title>Game club</title>
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-        <link rel="shortcut icon" type="image/png" href="{% static 'images/favicon.ico' %}">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
-        <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+P+One&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans&display=swap" rel="stylesheet">
-    </head>
-    <body class="menu-pages">
-
-        <div class="page-header">
-            {% if user.is_authenticated %}
-            {% else %}
-                 <a href="{% url 'register' %}" class="top-menu btn btn-outline-primary">Регистрация</a> <a href="{% url 'login' %}?next={% url 'main_menu' %}" class="top-menu btn btn-outline-primary">Войти</a>
-            {% endif %}
-                <a href="{% url 'main_menu' %}" class="btn btn-light underhead">Главная</a>
-                <a href="{% url 'post_new' %}" class="btn btn-light underhead">Добавить пост</a>
-                <a href="/" class="btn btn-light underhead"><span class="star">★ </span>Пост дня</a>
-                {% if user.is_authenticated %}
-                    <a href="{% url 'logout' %}" class="btn btn-light underhead">Выход</a>
-                {% endif %}
-        </div>
-        
+{% block bg %}
+<body class="menu-pages">
+{% endblock %}
         <div class="content container">
             <div class="row">
                 <div class="col-md-8">
                     {% block content %}
-
                         <div align="center">
                             <p class="game-choice">Выберай игру и начинай общаться!</p>
-                            <p> {% for item in post_categoryes %}
-                                {{ item }}  
-                                {% endfor %} </p>
                         </div>
 
                         <div align="left" class="game-margin">
-                            <a href="{% url 'post_list' %}"><img src="{% static 'images\WOT.jpg' %}" width="250px" height="160px" class="border rounded game-url"><nobr>
-                            <a href="{% url 'post_list' %}"><img src="{% static 'images\Pubg.jpg' %}" width="250px" height="160px" class="border rounded blog-image"></a></nobr>
-                            <a href="{% url 'post_list' %}"><img src="{% static 'images\minecraft.jpg' %}" width="250px" height="160px" class="border rounded blog-image"></a>
-                            <a href="{% url 'post_list' %}"><img src="{% static 'images\dota.jpg' %}" width="250px" height="160px" class="border rounded game-margin"></a><nobr>
-                            <a href="{% url 'post_list' %}"><img src="{% static 'images\csgo.jpg' %}" width="250px" height="160px" class="border rounded game-margin blog-image"></a>
-                            <a href="{% url 'post_list' %}"><img src="{% static 'images\gta5.jpg' %}" width="250px" height="160px" class="border rounded game-margin blog-image"></a></nobr>
+                                {% for post in wot %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\WOT.jpg' %}" width="250px" height="160px" class="border rounded game-url category"><nobr>  
+                                {% endfor %} 
+                                {% for post in pubg %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\Pubg.jpg' %}" width="250px" height="160px" class="border rounded blog-image"></a></nobr>
+                                {% endfor %}
+                                {% for post in minecraft %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\minecraft.jpg' %}" width="250px" height="160px" class="border rounded blog-image"></a>
+                                {% endfor %} 
+                                {% for post in dota %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\dota.jpg' %}" width="250px" height="160px" class="border rounded game-margin"></a><nobr>
+                                {% endfor %} 
+                                {% for post in csgo %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\csgo.jpg' %}" width="250px" height="160px" class="border rounded game-margin blog-image"></a>
+                                {% endfor %} 
+                                {% for post in gta %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\gta5.jpg' %}" width="250px" height="160px" class="border rounded game-margin blog-image"></a></nobr>
+                                {% endfor %} 
                         </div>
-
                     {% endblock %}
                 </div>
             </div>
         </div>
-    </body>
-</html>
+</body>
 

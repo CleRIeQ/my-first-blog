@@ -9,7 +9,6 @@ urlpatterns = [
     path('', views.hello, name='hello'),
     path('menu/post_list', views.post_list, name='post_list'),
     url(r'^tag/(?P<tag_slug>[-\w]+)/$', views.post_list, name='post_list_by_tag'),
-    path('blog/menu/', views.main_menu, name='main_menu'),
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.post_new, name='post_new'),
     #path('post/best/<int:pk>/', views.best_post, name='best_post'),
@@ -18,5 +17,7 @@ urlpatterns = [
     path('post/<int:pk>/leave_comment/', views.post_detail, name='leave_comment'),
     path('like/<int:pk>/', views.LikeView, name='like_post'),
     path('login/', views.login_user, name='login'),
-    path('category/<str:cats>/', views.category_view, name='category')
+    path('blog/menu/', views.main_menu, name='main_menu'),
+    path('category/<str:cats>/', views.category_view, name='category'),
+    path('profile/', views.profile, name='profile'),
 ]

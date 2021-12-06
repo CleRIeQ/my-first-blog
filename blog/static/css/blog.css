@@ -36,7 +36,7 @@ h1, h2, h3, h4 {
 }
 
 .save {
-    float: right;
+    float:right;
 }
 
 .post-form textarea, .post-form input {
@@ -156,3 +156,20 @@ h1, h2, h3, h4 {
     letter-spacing: 1px;
     text-decoration: none;
   }
+
+.postn {
+    color: #000000;
+    font-size: 35pt;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+.profile-list {
+    font-size: 15px;
+    font-family: 'Balsamiq Sans', cursive;
+    text-decoration: none;
+}
+
+.profile-cats{
+    width: 50%;
+    float: left;
+}

@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db import models
 from taggit.managers import TaggableManager
 from django.utils import timezone
+from django.contrib.auth.models import User
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -35,6 +36,9 @@ class Post(models.Model):
 
     def total_likes(self):
         return self.likes.count()
+    
+    def all_cats(self):
+        return self.category.all()
 
 
 class Comment(models.Model):

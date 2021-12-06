@@ -1,9 +1,11 @@
-{% extends 'blog/base.html' %}
-    {% block content %}
-        <h1>Новый пост</h1>
-        <form method="POST" class="post-form">{% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="save btn btn-default">Сохранить</button>
-        </form>
-    {% endblock %}
+{% extends 'blog/form_cust.html' %}
+{% block content %}
+<div class="game-margin">
+    <h1 class="postn">Новый пост</h1>
+    <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary" style="margin-left: 600px;">Сохранить</button>
+    </form>
+</div>
+{% endblock %}
 
