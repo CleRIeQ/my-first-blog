@@ -11,8 +11,6 @@
             <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Изменить<span class="glyphicon glyphicon-pencil"></span></a>
         {% endif %}
         <h1>{{ post.title }}</h1>
-        <p class="tags">Tags: {{ post.tags.all|join:", " }}
-        </p>
         <p>{{ post.text|linebreaksbr }}</p>
             <br/><br/>
         <hr>
