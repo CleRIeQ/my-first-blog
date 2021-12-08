@@ -1,7 +1,6 @@
 from django.urls import reverse
 from django.conf import settings
 from django.db import models
-from taggit.managers import TaggableManager
 from django.utils import timezone
 from django.contrib.auth.models import User
 
@@ -23,7 +22,6 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_post')
-    tags = TaggableManager()
     category = models.CharField(max_length=255, default='N/G')
     
 
@@ -32,7 +30,7 @@ class Post(models.Model):
         self.save()
 
     def __str__(self):
-        return '{}/{}'.format(self.title, self.tags)
+        return '{}'.format(self.title)
 
     def total_likes(self):
         return self.likes.count()

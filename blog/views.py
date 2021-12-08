@@ -17,15 +17,8 @@ from taggit.models import Tag
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
-def post_list(request, tag_slug=None):
+def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
-    tag = None
-    #tags = Tag.objects.all()
-
-
-    if tag_slug:
-        tag = get_object_or_404(Tag, slug=tag_slug)
-        posts = posts.filter(tags__in=[tag])
 
     paginator = Paginator(posts, 4)  # 3 posts in each page
     page = request.GET.get('page')
@@ -37,7 +30,7 @@ def post_list(request, tag_slug=None):
     except EmptyPage:
         # If page is out of range deliver last page of results
         posts = paginator.page(paginator.num_pages)
-    return render(request, 'blog/post_list.html', {'posts': posts, 'page': page, 'tag': tag})
+    return render(request, 'blog/post_list.html', {'posts': posts, 'page': page })
 
 
 def profile(request):
@@ -182,20 +175,21 @@ def category_view(request, cats):
 
 
 def main_menu(request):
-    pubg = Post.objects.filter(id=1) #Pubg
-    minecraft = Post.objects.filter(id=2) #minecraft
-    dota = Post.objects.filter(id=6) #dota
-    wot = Post.objects.filter(id=5) #wot
-    gta = Post.objects.filter(id=11) #gta
-    csgo = Post.objects.filter(id=7) #csgo
+   # pubg = Post.objects.filter(id=1) #Pubg
+   # minecraft = Post.objects.filter(id=2) #minecraft
+    #dota = Post.objects.filter(id=6) #dota
+    #wot = Post.objects.filter(id=5) #wot
+   # gta = Post.objects.filter(id=11) #gta
+   # csgo = Post.objects.filter(id=7) #csgo
     
     post_categoryes = choice_list
     return render(request, 'blog/main_menu.html', {
         'post_categoryes': post_categoryes, 
-        'pubg': pubg, 
-        'minecraft': minecraft, 
-        'wot': wot, 
-        'dota': dota,
-        'csgo': csgo,
-        'gta': gta })
+       # 'pubg': pubg, 
+       #'minecraft': minecraft, 
+       # 'wot': wot, 
+       # 'dota': dota,
+        #'csgo': csgo,
+       # 'gta': gta })
+    })
 
