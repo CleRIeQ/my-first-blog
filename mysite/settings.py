@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-e#_as4^-!#vz-my9hbdvuyb1gx20gg0d)-+2m=5g(xztb3q=f!
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'https://clerleq.pythonanywhere.com/']
+ALLOWED_HOSTS = ['clerleq.pythonanywhere.com']
 
 # Application definition
 
@@ -36,7 +36,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
-    'taggit',
     'django.contrib.admin',
 ]
 
@@ -122,7 +121,6 @@ STATIC_URL = '/static/'
 STATIC_ROOT = '/home/CleRleQ/clerleq.pythonanywhere.com/static'
 LOGIN_REDIRECT_URL = '/'
 
-TAGGIT_CASE_INSENSITIVE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

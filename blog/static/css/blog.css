@@ -1,3 +1,6 @@
+.white-bg {
+    background-color: white;
+}
 .start-pages {
     background-image: url(../images/fon1.jpg);
     background-size: cover; /* Масштабируем фон */

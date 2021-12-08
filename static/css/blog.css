@@ -1,9 +1,18 @@
-body {
-    background-image: url(../images/wall.jpg);
+.start-pages {
+    background-image: url(../images/fon1.jpg);
+    background-size: cover; /* Масштабируем фон */
 }
 
+.menu-pages {
+    background-image: url(../images/fon2.jpg);
+    background-size: cover; /* Масштабируем фон */
+
+}
+.post-list {
+    background-image: url(../images/list.jpg);
+    background-size: cover; /* Масштабируем фон */
+}
 .page-header {
-    background-image: url(../images/orange.jpg);
     margin-top: 0;
     padding: 20px 20px 20px 40px
 }
@@ -16,20 +25,18 @@ body {
     text-decoration: none;
 }
 
-.content div div {
-    margin-left: 40px;
-}
 
 h1, h2, h3, h4 {
-    font-family: 'Lobster', cursive;
+    font-family: 'Ubuntu', sans-serif;
 }
 
 .date {
     color: #828282;
+    font-size: 15px;
 }
 
 .save {
-    float: right;
+    float:right;
 }
 
 .post-form textarea, .post-form input {
@@ -39,19 +46,20 @@ h1, h2, h3, h4 {
 .top-menu, .top-menu:hover, .top-menu:visited {
     color: #000000;
     float: right;
-    font-size: 40pt;
-    font-weight:bold;
     margin-right: 20px;
     margin-bottom: 20px;
-    text-decoration: none;
 }
 
 .post {
-    margin-bottom: 70px;
+    margin-bottom: 30px;
+    margin-left: 150px;
+    text-decoration: none;
 }
 
 .post h1 a, .post h1 a:visited {
     color: #000000;
+    text-decoration: none;
+    font-size: 22px;
 }
 
 .star {
@@ -67,21 +75,10 @@ h1, h2, h3, h4 {
    text-decoration: none;
 }
 
-.underhead-margin {
-    margin-left: 330px;
-}
 
 .underhead {
     padding: 12px;
-    background-image: url(../images/orange.jpg);
     margin-bottom: 10px;
-    border-top: 1px solid #DA1D00;
-    border-bottom: 1px solid #DA1D00;
-    text-decoration: none;
-}
-
-.underhead a:hover {
-    color: b8d4fc;
 }
 
 .logged {
@@ -115,5 +112,64 @@ h1, h2, h3, h4 {
 }
 
 .blog-image {
-    margin-left: 25px;
+    margin-left: 30px;
+}
+
+.hello-title {
+    font-size: 40pt;
+    color: #ffffff;
+    font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.reg-but {
+    margin-right: 25px;
+}
+
+.reg-description {
+    color: #ffffff;
+    font-size: 25px;
+
+}
+.game-choice {
+    color: #ffffff;
+    font-size: 40pt;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+
+.game-margin {
+    margin-top: 45px;
+}
+
+.margin-blog {
+    margin-top: 45px;
+    margin-left: 30px;
+}
+
+.blur {
+    filter: blur(5px);
+}
+
+.category {
+    font-size: 13px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+.postn {
+    color: #000000;
+    font-size: 35pt;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+.profile-list {
+    font-size: 15px;
+    font-family: 'Balsamiq Sans', cursive;
+    text-decoration: none;
+}
+
+.profile-cats{
+    width: 50%;
+    float: left;
 }

@@ -1,41 +1,44 @@
 {% extends 'blog/base.html' %}
-
-{% block content %}
-    <div class="post">
-        {% if post.published_date %}
-            <div class="date">
-                {{ post.published_date }}
-            </div>
-        {% endif %}
-        {% if user.is_superuser %}
-            <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Изменить<span class="glyphicon glyphicon-pencil"></span></a>
-        {% endif %}
-        <h1>{{ post.title }}</h1>
-        <p>{{ post.text|linebreaksbr }}</p>
-            <br/><br/>
-        <hr>
-        <br/>
-        <form action="{% url 'like_post' post.pk %}"
-              method="POST">
-            {% csrf_token %}
-            <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button> -  {{ total_likes }} Likes
-        </form>
-        <p>Комментарии</p>
-        {% if user.is_authenticated %}
-            <form action="" method="POST" class="post-form">{% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit" class="save btn btn-default">Оставить комментарий</button>
-            </form>
-        {% endif %}
-        {% for comment in latest_comments_list %}
-            <h2 class="comment-author">
-                {{ comment.author }}<br>
-            </h2>
-            {{ comment.body }}<br>
-            <div class="date">
-                {{ comment.created }}
-            </div>
-        {% endfor %}
-    </div>
-
+{% load static %}
+{% block bg %}
+    <body class="white-bg">
 {% endblock %}
+    {% block content %}
+        <div class="post">
+            {% if post.published_date %}
+                <div class="date">
+                    {{ post.published_date }}
+                </div>
+            {% endif %}
+            {% if user.is_superuser %}
+                <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}">Изменить<span class="glyphicon glyphicon-pencil"></span></a>
+            {% endif %}
+            <h1>{{ post.title }}</h1>
+            <p>{{ post.text|linebreaksbr }}</p>
+                <br/><br/>
+            <hr>
+            <br/>
+            <form action="{% url 'like_post' post.pk %}"
+                  method="POST">
+                {% csrf_token %}
+                <button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button> -  {{ total_likes }} Likes
+            </form>
+            <p>Комментарии</p>
+            {% if user.is_authenticated %}
+                <form action="" method="POST" class="post-form">{% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="save btn btn-default">Оставить комментарий</button>
+                </form>
+            {% endif %}
+            {% for comment in latest_comments_list %}
+                <h2 class="comment-author">
+                    {{ comment.author }}<br>
+                </h2>
+                {{ comment.body }}<br>
+                <div class="date">
+                    {{ comment.created }}
+                </div>
+            {% endfor %}
+        </div>
+    {% endblock %}
+</body>

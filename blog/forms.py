@@ -4,6 +4,7 @@ from .models import Category, Post
 from .models import Comment
 from django.contrib.auth.models import User
 
+# choices for category choicefield
 choices = Category.objects.all().values_list('name','name')
 
 choice_list = []
@@ -15,7 +16,7 @@ class PostForm(forms.ModelForm):
     textinfo = forms.CharField(label='Описание', widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=250)
     text = forms.CharField(label='Текст', widget=forms.Textarea(), max_length=10000)
     title = forms.CharField(label='Название', widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=200)
-    category = forms.ChoiceField(choices=choices, label='Категории')
+    category = forms.ChoiceField(choices=choice_list, label='Категории')
 
     class Meta:
         model = Post

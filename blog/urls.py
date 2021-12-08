@@ -6,7 +6,7 @@ from django.conf.urls import url
 router = SimpleRouter()
 
 urlpatterns = [
-    path('', views.hello, name='hello'),
+    path('', views.hello_page, name='hello_page'),
     path('menu/post_list', views.post_list, name='post_list'),
     url(r'^tag/(?P<tag_slug>[-\w]+)/$', views.post_list, name='post_list_by_tag'),
     path('post/<int:pk>/', views.post_detail, name='post_detail'),

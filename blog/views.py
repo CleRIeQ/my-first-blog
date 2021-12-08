@@ -1,6 +1,6 @@
 
 from django.contrib.auth import login, authenticate
-from django.forms.forms import Form 
+from django.forms.forms import Form
 from django.http import HttpResponseRedirect
 from django.http.response import HttpResponse
 from .models import Post
@@ -13,9 +13,10 @@ from .forms import *
 from .models import *
 from django.shortcuts import redirect
 from .forms import RegistrationForm, CommentForm
-from taggit.models import Tag
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
+
+# Post list func. return all post, filter with pagination
 
 def post_list(request):
     posts = Post.objects.filter(published_date__lte=timezone.now()).order_by('published_date')
@@ -40,10 +41,10 @@ def profile(request):
         return render(request, 'user_files/profile.html', {'user_posts': user_posts, 'liked_posts': liked_posts})
     else:
         return redirect('login')
-    
 
 
-def hello(request):
+# hello page
+def hello_page(request):
     return render(request, 'blog/hello.html')
 
 
@@ -81,7 +82,7 @@ def best_post(request, pk):
     return render(request, 'blog/post_detail.html', {'best_post': best_post, 'b_post': b_post, 'latest_comments_list': latest_comments_list, 'total_likes': total_likes,
                 'form': form})
 
-
+# create new post
 def post_new(request):
     if request.method == "POST":
         form = PostForm(request.POST)
@@ -173,23 +174,22 @@ def category_view(request, cats):
         category_posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/categories.html', {'cats': cats.title(), 'category_posts': category_posts, 'page': page})
 
-
+# main menu page (cats)
 def main_menu(request):
-   # pubg = Post.objects.filter(id=1) #Pubg
-   # minecraft = Post.objects.filter(id=2) #minecraft
-    #dota = Post.objects.filter(id=6) #dota
-    #wot = Post.objects.filter(id=5) #wot
-   # gta = Post.objects.filter(id=11) #gta
-   # csgo = Post.objects.filter(id=7) #csgo
-    
+    Pubg = Post.objects.filter(id=1) #Pubg
+    Minecraft = Post.objects.filter(id=2) #minecraft
+    Dota2 = Post.objects.filter(id=3) #dota
+    WoT = Post.objects.filter(id=4) #wot
+    GTA5 = Post.objects.filter(id=5) #gta
+    csgo = Post.objects.filter(id=7) #csgo
+
     post_categoryes = choice_list
     return render(request, 'blog/main_menu.html', {
-        'post_categoryes': post_categoryes, 
-       # 'pubg': pubg, 
-       #'minecraft': minecraft, 
-       # 'wot': wot, 
-       # 'dota': dota,
-        #'csgo': csgo,
-       # 'gta': gta })
-    })
+        'post_categoryes': post_categoryes,
+        'Pubg': Pubg,
+        'Minecraft': Minecraft,
+        'WoT': WoT,
+        'Dota2': Dota2,
+        'csgo': csgo,
+        'GTA5': GTA5 })
 
