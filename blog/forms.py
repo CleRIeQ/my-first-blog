@@ -1,7 +1,6 @@
 from django import forms
 from django.forms.widgets import TextInput
-from .models import Category, Post
-from .models import Comment
+from .models import Category, Post, Comment
 from django.contrib.auth.models import User
 
 # choices for category choicefield
@@ -11,6 +10,7 @@ choice_list = []
 
 for item in choices:
     choice_list.append(item)
+
 
 class PostForm(forms.ModelForm):
     textinfo = forms.CharField(label='Описание', widget=forms.TextInput(attrs={'class': 'form-control'}), max_length=250)

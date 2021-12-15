@@ -9,7 +9,6 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,9 +22,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-e#_as4^-!#vz-my9hbdvuyb1gx20gg0d)-+2m=5g(xztb3q=f!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-ALLOWED_HOSTS = ['clerleq.pythonanywhere.com']
+DEBUG = False
+ALLOWED_HOSTS = ['127.0.0.1', 'clerleq.pythonanywhere.com']
 
 # Application definition
 

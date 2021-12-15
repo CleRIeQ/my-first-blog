@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db import models
 from django.utils import timezone
 
+
 # categories for posts..
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -12,6 +13,7 @@ class Category(models.Model):
 
     def get_absolute_url(self):
         return reverse('main_menu')
+
 
 # post info-data model
 class Post(models.Model):
@@ -23,7 +25,7 @@ class Post(models.Model):
     created_date = models.DateTimeField(default=timezone.now)
     published_date = models.DateTimeField(blank=True, null=True)
     likes = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='blog_post')
-    category = models.CharField(max_length=255, default='N/G')
+    category = models.CharField(max_length=255, default='Pubg')
 
     # create time
     def publish(self):
@@ -41,6 +43,7 @@ class Post(models.Model):
     # return all post cats
     def all_cats(self):
         return self.category.all()
+
 
     # comment model
 class Comment(models.Model):

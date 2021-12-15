@@ -1,18 +1,11 @@
 
 from django.contrib.auth import login, authenticate
-from django.forms.forms import Form
 from django.http import HttpResponseRedirect
 from django.http.response import HttpResponse
-from .models import Post
-from .models import Comment
-from django.contrib.auth.decorators import login_required
-from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
-from django.utils import timezone
-from .forms import *
 from .models import *
 from django.shortcuts import redirect
-from .forms import RegistrationForm, CommentForm
+from .forms import RegistrationForm, CommentForm, PostForm, LoginUserForm, choice_list
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
@@ -82,16 +75,20 @@ def best_post(request, pk):
     return render(request, 'blog/post_detail.html', {'best_post': best_post, 'b_post': b_post, 'latest_comments_list': latest_comments_list, 'total_likes': total_likes,
                 'form': form})
 
+
 # create new post
 def post_new(request):
     if request.method == "POST":
-        form = PostForm(request.POST)
-        if form.is_valid():
-            post = form.save(commit=False)
-            post.author = request.user
-            post.published_date = timezone.now()
-            post.save()
-            return redirect('post_detail', pk=post.pk)
+        if not request.user.is_authenticated:
+            return HttpResponseRedirect('/login/?next=%s' % request.path)
+        elif request.user.is_authenticated:
+            form = PostForm(request.POST)
+            if form.is_valid():
+                post = form.save(commit=False)
+                post.author = request.user
+                post.published_date = timezone.now()
+                post.save()
+                return redirect('post_detail', pk=post.pk)
     else:
         form = PostForm()
     return render(request, 'blog/post_edit.html', {'form': form})
@@ -147,6 +144,7 @@ def login_user(request):
             user = authenticate(username=cd['username'], password=cd['password'])
             if user:
                 return HttpResponseRedirect("?next=/main_menu/")
+
             if user is not None:
                 if user.is_active:
                     login(request, user)
@@ -156,7 +154,7 @@ def login_user(request):
             else:
                 return HttpResponse('Invalid login')
     else:
-        form = LoginUserForm()
+       login_form = LoginUserForm()
     return render(request, 'registration/login.html', {'login_form': login_form})
 
 
@@ -173,6 +171,7 @@ def category_view(request, cats):
         # If page is out of range deliver last page of results
         category_posts = paginator.page(paginator.num_pages)
     return render(request, 'blog/categories.html', {'cats': cats.title(), 'category_posts': category_posts, 'page': page})
+
 
 # main menu page (cats)
 def main_menu(request):

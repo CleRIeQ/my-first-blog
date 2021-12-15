@@ -8,7 +8,6 @@ router = SimpleRouter()
 urlpatterns = [
     path('', views.hello_page, name='hello_page'),
     path('menu/post_list', views.post_list, name='post_list'),
-    url(r'^tag/(?P<tag_slug>[-\w]+)/$', views.post_list, name='post_list_by_tag'),
     path('post/<int:pk>/', views.post_detail, name='post_detail'),
     path('post/new/', views.post_new, name='post_new'),
     #path('post/best/<int:pk>/', views.best_post, name='best_post'),
