@@ -1,0 +1,42 @@
+{% extends "blog/form_cust.html" %}
+{% load static %}
+
+<head>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+{% block content %}
+
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+{% if next %}
+  {% if user.is_authenticated %}
+    <p>Your account doesn't have access to this page. To proceed,
+    please login with an account that has access.</p>
+  {% endif %}
+{% endif %}
+<h1 class="login-info">Авторизация</h1>
+<form method="post" action="{% url 'login' %}" class="login">
+{% csrf_token %}
+<table class> 
+  <p>
+    <label for="login">Логин:</label>
+    <span type="text" name="login" id="login">{{ form.username }}</span>
+ 
+  </p>
+  
+  <p>
+    <label for="password">Пароль:</label>
+    <span type="password" name="password" id="password" >{{ form.password }}</span>
+  </p>
+</table>
+<p>
+<button type="submit" class="login-button">Войти</button>
+</p>
+<input type="hidden" name="next" value="{{ next }}" />
+<p><a href="{% url 'password_reset' %}" class="forgot-password">Забыли пароль?</a></p>
+</form>
+
+
+{% endblock %}

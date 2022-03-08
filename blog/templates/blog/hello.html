@@ -1,0 +1,13 @@
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    <div align="center" style="padding-top: 60px;margin-top: 50px;">
+        <p class="hello-title">Game Club</p>
+        <p class="reg-description"><b>Узнавай, рассказывай <br> находи, общайся<b></p>
+        {% if user.is_authenticated %}
+            {% else %}
+                 <a href="{% url 'register' %}" class="btn btn-outline-primary btn-lg">Регистрация</a> <br>
+                 <a href="{% url 'login' %}" class="btn btn-outline-primary btn-lg" style="margin-top: 5px;">Войти</a>
+            {% endif %}
+    </div>
+{% endblock %}

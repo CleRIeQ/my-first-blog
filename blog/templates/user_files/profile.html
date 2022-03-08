@@ -1,0 +1,29 @@
+{% extends "blog/main_menu.html" %}
+{% block content %}
+<div style="height: 800px;">
+<h2 class="postn" style="color:white;"> {{ user.first_name }} {{ user.last_name }} </h2> 
+<div>
+    <p class="postn profile-cats" style="color:white;font-size: 25px;">Ваши посты: </p>
+    <p class="postn profile-cats" style="color:white;font-size: 25px;">Информация о пользователе: </p>
+</div>
+<div class="profile-cats">
+    {% for post in user_posts %}
+        <h1><a href="{% url 'post_detail' pk=post.pk %}" class="profile-list" style="font-size: 16px;">{{ post.title }}</a></h1>
+    {% endfor %}
+    <p style="color:white;font-size: 25px;">Вам понравились: </p>
+    {% for post in liked_posts %}
+    <h1><a href="{% url 'post_detail' pk=post.pk %}" class="profile-list" style="font-size: 16px;">{{ post.title }}</a></h1>
+    {% endfor %}
+</div>
+<div>
+    <p class="postn" style="color:white;font-size: 20px;">Зарегестрирован: {{ user.date_joined }}</p>
+    <p class="postn" style="color:white;font-size: 20px;">Почта: {{ user.email }}</p>
+    <p class="postn" style="color:white;font-size: 20px;">Ник: {{ user.username }}</p>
+    {% if user.is_superuser %}
+        <p class="postn" style="color:white;font-size: 20px;">Статус: администратор </p>
+    {% else %}
+        <p class="postn" style="color:white;font-size: 20px;">Статус: пользователь</p>
+    {% endif %}
+</div>
+</div>
+{% endblock %}

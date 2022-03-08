@@ -1,0 +1,175 @@
+.start-pages {
+    background-image: url(../images/fon1.jpg);
+    background-size: cover; /* Масштабируем фон */
+}
+
+.menu-pages {
+    background-image: url(../images/fon2.jpg);
+    background-size: cover; /* Масштабируем фон */
+
+}
+.post-list {
+    background-image: url(../images/list.jpg);
+    background-size: cover; /* Масштабируем фон */
+}
+.page-header {
+    margin-top: 0;
+    padding: 20px 20px 20px 40px
+}
+
+.page-header h1, .page-header h1 a, .page-header h1 a:visited, .page-header h1 a:active {
+    color: #000000;
+    float: left;
+    font-size: 29pt;
+    margin-left: 170px;
+    text-decoration: none;
+}
+
+
+h1, h2, h3, h4 {
+    font-family: 'Ubuntu', sans-serif;
+}
+
+.date {
+    color: #828282;
+    font-size: 15px;
+}
+
+.save {
+    float:right;
+}
+
+.post-form textarea, .post-form input {
+    width: 100%;
+}
+
+.top-menu, .top-menu:hover, .top-menu:visited {
+    color: #000000;
+    float: right;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.post {
+    margin-bottom: 30px;
+    margin-left: 150px;
+    text-decoration: none;
+}
+
+.post h1 a, .post h1 a:visited {
+    color: #000000;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+.star {
+    color: #ffcb0f;
+}
+
+.underhead a {
+   font-size: 17px;
+   color: #000000;
+   font-weight:bold;
+   margin-left: 50px;
+   padding: 0px;
+   text-decoration: none;
+}
+
+
+.underhead {
+    padding: 12px;
+    margin-bottom: 10px;
+}
+
+.logged {
+    font-family: 'Lobster', cursive;
+    color: #000000;
+    font-size: 36pt;
+    padding-top: 25px;
+    float: right;
+}
+
+.comment-author {
+    font-size: 20pt;
+    color: #000000;
+    margin-top: 30px;
+}
+
+.dislikes {
+    font-size: 40pt;
+    font-size: 36pt;
+    float: right;
+    color: red;
+    text-decoration: none;
+}
+
+.likes {
+    font-size: 40pt;
+    font-size: 36pt;
+    float: right;
+    color: green;
+    text-decoration: none;
+}
+
+.blog-image {
+    margin-left: 30px;
+}
+
+.hello-title {
+    font-size: 40pt;
+    color: #ffffff;
+    font-family: 'Mochiy Pop P One', sans-serif;
+}
+
+.reg-but {
+    margin-right: 25px;
+}
+
+.reg-description {
+    color: #ffffff;
+    font-size: 25px;
+
+}
+.game-choice {
+    color: #ffffff;
+    font-size: 40pt;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+
+.game-margin {
+    margin-top: 45px;
+}
+
+.margin-blog {
+    margin-top: 45px;
+    margin-left: 30px;
+}
+
+.blur {
+    filter: blur(5px);
+}
+
+.category {
+    font-size: 13px;
+    font-weight: 100;
+    letter-spacing: 1px;
+    text-decoration: none;
+  }
+
+.postn {
+    color: #000000;
+    font-size: 35pt;
+    font-family: 'Balsamiq Sans', cursive;
+}
+
+.profile-list {
+    font-size: 15px;
+    font-family: 'Balsamiq Sans', cursive;
+    text-decoration: none;
+}
+
+.profile-cats{
+    width: 50%;
+    float: left;
+}

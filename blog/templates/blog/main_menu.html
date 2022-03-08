@@ -1,0 +1,40 @@
+{% extends 'blog/base.html' %}
+{% load static %}
+{% block bg %}
+<body class="menu-pages">
+{% endblock %}
+
+        <div class="content container">
+            <div class="row">
+                <div class="col-md-8">
+                    {% block content %}
+                        <div align="center">
+                            <p class="game-choice">Выберай игру и начинай общаться!</p>
+                        </div>
+
+                        <div align="left" class="game-margin">
+                                {% for post in WoT %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\WOT.jpg' %}" width="250px" height="160px" class="border rounded game-url category"><nobr>
+                                {% endfor %}
+                                {% for post in Pubg %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\Pubg.jpg' %}" width="250px" height="160px" class="border rounded blog-image"></a></nobr>
+                                {% endfor %}
+                                {% for post in Minecraft %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\minecraft.jpg' %}" width="250px" height="160px" class="border rounded blog-image"></a>
+                                {% endfor %}
+                                {% for post in Dota2 %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\dota.jpg' %}" width="250px" height="160px" class="border rounded game-margin"></a><nobr>
+                                {% endfor %}
+                                {% for post in csgo %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\csgo.jpg' %}" width="250px" height="160px" class="border rounded game-margin blog-image"></a>
+                                {% endfor %}
+                                {% for post in GTA5 %}
+                                    <a href="{% url 'category' post.category %}"><img src="{% static 'images\gta5.jpg' %}" width="250px" height="160px" class="border rounded game-margin blog-image"></a></nobr>
+                                {% endfor %}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+</body>
+
